@@ -23,8 +23,13 @@ class InsertReservation:
 
     def __init__(self):
         self.name = input('Name: ')
-        self.date = int(input('Date (DD/MM/YYYY): '))
+        self.date = (input('Date (DD/MM/YYYY): '))
+        self.time = (input("Time (HH:mm) "))
         self.phone = int(input("Phone number: "))
         self.num_persons = int(input('Number of persons: '))
+    
+        print('Attend for availability...')
         
         
+reservation =  InsertReservation()
+my_table = Info(reservation.name, reservation.date, reservation.phone, reservation.num_persons, 1234567890) 
