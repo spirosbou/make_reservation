@@ -3,16 +3,28 @@ print('Book your table here')
 
 class Info:
 
-    def __init__(self, name:str, date: int, phone:int, num_persons: int):
+    def __init__(self, name:str, date: int, phone:int, num_persons: int, res_id: int):
         self.name = name
         self.date = date
         self.phone = phone
         self.num_persons = num_persons
+        self.res_id = res_id
 
-class Action:
+    def print_info(self, name):
+        if self.name == name:
+            print('Yes, the name', + {self.name} +'has a reservation on' + {self.date} +'for' + {self.num_persons} + 'person(s).')
 
-    def reservation(self, object_par):
-        self.object_par = object_par
+        else:
+            print('No information available for this name.')
 
-        reserv = {}
+
+
+class InsertReservation:
+
+    def __init__(self):
+        self.name = input('Name: ')
+        self.date = int(input('Date (DD/MM/YYYY): '))
+        self.phone = int(input("Phone number: "))
+        self.num_persons = int(input('Number of persons: '))
+        
         
