@@ -3,12 +3,12 @@ print('Book your table here')
 
 class Info:
 
-    def __init__(self, name:str, date: int, phone:int, num_persons: int, res_id: int):
+    def __init__(self, name:str, date: int, phone:int, num_persons: int):
         self.name = name
         self.date = date
         self.phone = phone
         self.num_persons = num_persons
-        self.res_id = res_id
+        #self.res_id = res_id
 
     def print_info(self, name):
         if self.name == name:
@@ -32,4 +32,5 @@ class InsertReservation:
         
         
 reservation =  InsertReservation()
-my_table = Info(reservation.name, reservation.date, reservation.phone, reservation.num_persons, 1234567890) 
+my_table = Info(reservation.name, reservation.date, reservation.phone, reservation.num_persons)
+print(my_table) 
