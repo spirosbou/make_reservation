@@ -12,7 +12,7 @@ class Info:
 
     def print_info(self, name):
         if self.name == name:
-            print('Yes, the name', + {self.name} +'has a reservation on' + {self.date} +'for' + {self.num_persons} + 'person(s).')
+            print(f'Yes, the name, {self.name} has a reservation on  {self.date} for {self.num_persons} person(s).')
 
         else:
             print('No information available for this name.')
@@ -33,4 +33,4 @@ class InsertReservation:
         
 reservation =  InsertReservation()
 my_table = Info(reservation.name, reservation.date, reservation.phone, reservation.num_persons)
-print(my_table) 
+my_table.print_info('spiros') 
