@@ -1,6 +1,6 @@
 print('Welcome to our Restaurant')
 print('Book your table here')
-
+import time
 class Info:
 
     def __init__(self, name:str, date: int, phone:int, num_persons: int):
@@ -12,7 +12,7 @@ class Info:
 
     def print_info(self, name):
         if self.name == name:
-            print(f'Yes, the name, {self.name} has a reservation on  {self.date} for {self.num_persons} person(s).')
+            print(f'Yes, the name {self.name} has a reservation on  {self.date} for {self.num_persons} person(s).')
 
         else:
             print('No information available for this name.')
@@ -29,6 +29,7 @@ class InsertReservation:
         self.num_persons = int(input('Number of persons: '))
     
         print('Attend for availability...')
+        time.sleep(5)
         
         
 reservation =  InsertReservation()
