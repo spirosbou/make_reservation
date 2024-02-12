@@ -1,6 +1,18 @@
 print('Welcome to our Restaurant')
 print('Book your table here')
 import time
+import sqlite3
+
+
+# Connecting the database
+def db_conn():
+    connex = None
+    try:
+        connex = sqlite3.connect('ReservationInfo.sqlite')
+    except sqlite3.error as e:
+        print(e)
+    return connex
+
 class Info:
 #This class is used for getting the information of customer.
     def __init__(self, name:str, date: int, phone:int, num_persons: int):
@@ -29,6 +41,8 @@ class InsertReservation:
         self.num_persons = int(input('Number of persons: '))
     
         print('Attend for availability...')
+
+        
         time.sleep(3)
         
         
