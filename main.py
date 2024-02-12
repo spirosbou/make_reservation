@@ -4,6 +4,7 @@ import time
 import sqlite3
 
 
+
 # Connecting the database
 def db_conn():
     connex = None
@@ -41,9 +42,11 @@ class InsertReservation:
         self.num_persons = int(input('Number of persons: '))
     
         print('Attend for availability...')
-
-        
         time.sleep(3)
+
+    #Checking for availability
+    def check_availability(self):
+        pass
         
         
 reservation =  InsertReservation()
