@@ -48,7 +48,8 @@ class InsertReservation:
 
     #Checking for availability
     def check_availability(self):
-        pass
+        connex = db_conn()
+        cursor = connex.cursor()
         
         
 reservation =  InsertReservation()

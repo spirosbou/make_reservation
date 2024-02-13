@@ -1,15 +1,16 @@
 import sqlite3
 
-connex = sqlite3.connect('ReservationInfo.sqlite')
+connex = sqlite3.connect('ReservationInfo')
 
 cursor = connex.cursor()
 
-sql_query = """ CREATE TABLE Reservations (
-            id integer PRIMARY KEY,
-            name text NOT NULL,
-            date text NOT NULL,
-            phone integer NOT NULL,
-            num_persons integer NOT NULL
+sql_query = """CREATE TABLE Info(
+            ID INTEGER PRIMARY KEY,
+            fname TEXT NOT NULL, 
+            lname TEXT NOT NULL,
+            date TEXT NOT NULL,
+            phone INTEGER NOT NULL,
+            num_persons INTEGER NOT NULL
 )"""
 
 cursor.execute(sql_query)
