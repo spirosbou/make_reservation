@@ -16,16 +16,17 @@ def db_conn():
 
 class Info:
 #This class is used for getting the information of customer.
-    def __init__(self, name:str, date: int, phone:int, num_persons: int):
-        self.name = name
+    def __init__(self, fname:str, lname:str, date: int, phone:int, num_persons: int):
+        self.fname = fname
+        self.lname = lname
         self.date = date
         self.phone = phone
         self.num_persons = num_persons
         
 
-    def print_info(self, name):
-        if self.name == name:
-            print(f'Yes, the name {self.name} has a reservation on  {self.date} for {self.num_persons} person(s).')
+    def print_info(self, lname):
+        if self.lname == lname:
+            print(f'Yes, the name {self.lname} has a reservation on  {self.date} for {self.num_persons} person(s).')
 
         else:
             print('No information available for this name.')
@@ -35,7 +36,8 @@ class Info:
 class InsertReservation:
 #   Creating a class method that will allow users to add new reservations 
     def __init__(self):
-        self.name = input('Name: ')
+        self.fname = input('Name: ')
+        self.lname = input('Last Name: ')
         self.date = (input('Date (DD/MM/YYYY): '))
         self.time = (input("Time (HH:mm) "))
         self.phone = int(input("Phone number: "))
@@ -50,5 +52,5 @@ class InsertReservation:
         
         
 reservation =  InsertReservation()
-my_table = Info(reservation.name, reservation.date, reservation.phone, reservation.num_persons)
+my_table = Info(reservation.lname, reservation.date, reservation.num_persons)
 my_table.print_info('spiros') 
