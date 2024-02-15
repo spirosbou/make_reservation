@@ -1,6 +1,5 @@
 print('Welcome to our Restaurant')
 print('Book your table here')
-import time
 import sqlite3
 
 
@@ -16,17 +15,18 @@ def db_conn():
 
 class Info:
 #This class is used for getting the information of customer.
-    def __init__(self, fname:str, lname:str, date: int, phone:int, num_persons: int):
+    def __init__(self, fname:str, lname:str, date: int, time: int, phone:int, num_persons: int):
         self.fname = fname
         self.lname = lname
         self.date = date
+        self.time = time
         self.phone = phone
         self.num_persons = num_persons
         
 
     def print_info(self, lname):
         if self.lname == lname:
-            print(f'Yes, the name {self.lname} has a reservation on  {self.date} for {self.num_persons} person(s).')
+            print(f'Yes, the name {self.lname} has a reservation on {self.date} at {self.time} for {self.num_persons} person(s).')
 
         else:
             print('No information available for this name.')
@@ -42,16 +42,30 @@ class InsertReservation:
         self.time = (input("Time (HH:mm) "))
         self.phone = int(input("Phone number: "))
         self.num_persons = int(input('Number of persons: '))
-    
+        
         print('Attend for availability...')
-        time.sleep(3)
+
+    # Function to insert data into database
+    def insert_personal_data(self):
+        self.connex = db_conn()
+        self.cur = self.connex.cursor()
+        sql = """INSERT INTO Info (fname, lname, date, time, phone, num_person) VALUES(?,?,?,?,?,?)"""
+        self.cur = self.cur.execute(sql,(self.fname,self.lname,self.date,self.time,self.phone,self.num_persons))
+        self.connex.commit()
+        self.connex.close()
+        return ("Your Reservation has been registered!")
+
 
     #Checking for availability
-    def check_availability(self):
-        connex = db_conn()
-        cursor = connex.cursor()
+    # def check_availability(self):
+    #     connex = db_conn()
+    #     cur = connex.cursor()
+    #     cur.execute("SELECT lname FROM Info")
+    #     result = cur.fetchone()
+
         
         
 reservation =  InsertReservation()
-my_table = Info(reservation.lname, reservation.date, reservation.num_persons)
-my_table.print_info('spiros') 
+my_table = Info(reservation.fname,reservation.lname,reservation.date,reservation.time,reservation.phone,reservation.num_persons)
+my_table.print_info('boutsis') 
+#reservation.insert_personal_data()
