@@ -8,7 +8,7 @@ import sqlite3
 def db_conn():
     connex = None
     try:
-        connex = sqlite3.connect('ReservationInfo.sqlite')
+        connex = sqlite3.connect('ReservationInfo1_db')
     except sqlite3.error as e:
         print(e)
     return connex
@@ -47,25 +47,40 @@ class InsertReservation:
 
     # Function to insert data into database
     def insert_personal_data(self):
-        self.connex = db_conn()
-        self.cur = self.connex.cursor()
-        sql = """INSERT INTO Info (fname, lname, date, time, phone, num_person) VALUES(?,?,?,?,?,?)"""
-        self.cur = self.cur.execute(sql,(self.fname,self.lname,self.date,self.time,self.phone,self.num_persons))
-        self.connex.commit()
-        self.connex.close()
+        connex = db_conn()
+        cur = connex.cursor()
+        table = """CREATE TABLE IF NOT EXISTS Info1(
+            ID INTEGER PRIMARY KEY,
+            fname TEXT NOT NULL, 
+            lname TEXT NOT NULL,
+            date TEXT NOT NULL,
+            time  TEXT NOT NULL,
+            phone INTEGER NOT NULL,
+            num_persons INTEGER NOT NULL)"""
+        cur.execute(table)
+        cur.execute("INSERT INTO Info1 (fname, lname, date, time, phone, num_persons) VALUES(?,?,?,?,?,?)",(self.fname,self.lname,self.date,self.time,self.phone,self.num_persons))
+
+        data=cur.execute('''SELECT * FROM Info1''') 
+        for row in data: 
+            print(row) 
+
+        connex.commit()
+        connex.close()
         return ("Your Reservation has been registered!")
 
 
     #Checking for availability
-    # def check_availability(self):
-    #     connex = db_conn()
-    #     cur = connex.cursor()
-    #     cur.execute("SELECT lname FROM Info")
-    #     result = cur.fetchone()
+    def check_availability(self):
+        connex = db_conn()
+        cur = connex.cursor()
+        cur.execute("SELECT * FROM Info1 WHERE lname=?", (self.lname))
+        result = cur.fetchone()
+        if result is None:
+            print('')
 
         
         
 reservation =  InsertReservation()
 my_table = Info(reservation.fname,reservation.lname,reservation.date,reservation.time,reservation.phone,reservation.num_persons)
-my_table.print_info('boutsis') 
-#reservation.insert_personal_data()
+my_table.print_info() 
+reservation.insert_personal_data()
